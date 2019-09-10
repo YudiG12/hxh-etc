@@ -16,36 +16,42 @@ paths:
     post:
       tags:
       - "memory line"
-      summary: "uploads an image"
-      description: ""
-      operationId: "uploadFile"
+      summary: "Insere uma nova memory line"
+      description: "O usuário não precisa mandar nenhuma informação, automaticamente a memory line é criada com o nome untitled e as outras informações tiradas do usuário que a enviou"
       consumes:
-      - "multipart/form-data"
+      - "application/json"
       produces:
       - "application/json"
       parameters:
-        - in: "body"
-          name: "MemoryLine"
-          description: "Informação para cadastro"
+        - name: "user_id"
+          in: "header"
           required: true
-          schema:
-            $ref: "#/definitions/DateMetricMachineData"
+          type: "string"
       responses:
         200:
-          description: "successful operation"
+          description: "Não houve nenhum erro no cadastro de memory line"
           schema:
-            $ref: "#/definitions/InsertMachineData"
+            properties:
+                message:
+                  type: string
+                  description: "Cadastro feito com sucesso"
   /all:
     get:
       tags:
         - "memory line"
-      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
-      description: "Retorna os campeonatos de uma empresa"
+      summary: "Retorna as memory line do usuário (privadas ou públicas)"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "user_id"
+          in: "header"
+          required: true
+          type: "string"
       responses:
         200:
           description: OK
           schema:
-            $ref: "#/definitions/InsertMachineData"
+            $ref: "#/definitions/AllMemoryLine"
   /{id_memory_line}:
     get:
       tags:
@@ -186,6 +192,40 @@ paths:
             $ref: "#/definitions/InsertMachineData"
   
 definitions:
+  AllMemoryLine:
+    type: array
+    items:
+      type: object
+      properties:
+        idMemoryLine:
+          description: "Id da memory line como String"
+          type: string
+        nameMemoryLine:
+          description: "Id da memory line como String"
+          type: string
+        participants:
+          description: "Id da memory line como String"
+          type: string
+        quantityMoments:
+          description: ""
+          type: integer
+        urlProfileImage:
+          description: "Id da memory line como String"
+          type: string
+        lastTimeUpdate:
+          example: "1995-09-07T10:40:52Z"
+          format: date-time
+          type: string
+        creationDate:
+          example: "1995-09-07T10:40:52Z"
+          format: date-time
+          type: string
+  MemoryLine:
+    type: object
+    properties:
+      nomeMemorieline:
+        description: "Data da Medição"
+        type: string
   DateMetricMachineData:
     type: object
     properties:
