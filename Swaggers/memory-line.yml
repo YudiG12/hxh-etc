@@ -1,0 +1,212 @@
+swagger: "2.0"
+info:
+  description: "Essa é a documentação da API da Memory Line para uso do grupo da faculdade"
+  version: "1.0.0"
+  title: "TecHxHunt Memory Line"
+host: "Unknown:5000"
+tags:
+  - name: "memory line"
+  - name: "moment in memory line"
+  - name: "share memory line"
+schemes:
+  - "http"
+
+paths:
+  /:
+    post:
+      tags:
+      - "memory line"
+      summary: "uploads an image"
+      description: ""
+      operationId: "uploadFile"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "MemoryLine"
+          description: "Informação para cadastro"
+          required: true
+          schema:
+            $ref: "#/definitions/DateMetricMachineData"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/InsertMachineData"
+  /all:
+    get:
+      tags:
+        - "memory line"
+      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
+      description: "Retorna os campeonatos de uma empresa"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/InsertMachineData"
+  /{id_memory_line}:
+    get:
+      tags:
+        - "memory line"
+      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
+      description: "Retorna os campeonatos de uma empresa"
+      parameters:
+      - name: "id_memory_line"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/InsertMachineData"
+    delete:
+      tags:
+        - "memory line"
+      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
+      description: "Retorna os campeonatos de uma empresa"
+      parameters:
+      - name: "id_memory_line"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/InsertMachineData"
+    put:
+      tags:
+        - "memory line"
+      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
+      description: "Retorna os campeonatos de uma empresa"
+      parameters:
+      - name: "id_memory_line"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/InsertMachineData"
+    post:
+      tags:
+        - "memory line"
+      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
+      description: "Retorna os campeonatos de uma empresa"
+      parameters:
+      - name: "id_memory_line"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/InsertMachineData"
+  
+  /{id_memory_line}/{id_moment}:
+    delete:
+      tags:
+        - "moment in memory line"
+      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
+      description: "Retorna os campeonatos de uma empresa"
+      parameters:
+      - name: "id_memory_line"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "id_moment"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/InsertMachineData"
+    put:
+      tags:
+        - "moment in memory line"
+      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
+      description: "Retorna os campeonatos de uma empresa"
+      parameters:
+      - name: "id_memory_line"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "id_moment"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/InsertMachineData"
+            
+  /{id_memory_line}/share:
+    get:
+      tags:
+        - "share memory line"
+      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
+      description: "Retorna os campeonatos de uma empresa"
+      parameters:
+      - name: "id_memory_line"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/InsertMachineData"
+  /{id_memory_line}/invite/{id_user}:
+    get:
+      tags:
+        - "share memory line"
+      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
+      description: "Retorna os campeonatos de uma empresa"
+      parameters:
+      - name: "id_memory_line"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "id_user"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/InsertMachineData"
+  
+definitions:
+  DateMetricMachineData:
+    type: object
+    properties:
+      date:
+        description: "Data da Medição"
+        type: string
+  InsertMachineData:
+    type: object
+    properties:
+      idMachine:
+        description: "Placa Mãe"
+        type: string
+      motherBoard:
+        description: "Placa Mãe"
+        type: string
+      os:
+        description: "Sistema Operacional"
+        type: string
+      manufacturer:
+        description: "Fabricante"
+        type: string
+      model:
+        description: "Modelo"
+        type: string
