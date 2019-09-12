@@ -6,7 +6,6 @@ info:
 host: "Unknown:5000"
 tags:
   - name: "memory line"
-  - name: "moment in memory line"
   - name: "share memory line"
 schemes:
   - "http"
@@ -245,6 +244,11 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/TypeReaction"
+      cretionDate:
+        example: "1995-09-07T10:40:52Z"
+        format: date-time
+        type: string
+        
   MemoryLineSpecific:
     type: object
     properties:
@@ -300,7 +304,7 @@ definitions:
               description: "url do bucket para acessar o momento"
               type: string
       lastTimeUpdate:
-        description: "ultima vez que a memory line foi co"
+        description: "ultima vez que a memory line foi atualizada"
         example: "1995-09-07T10:40:52Z"
         format: date-time
         type: string
