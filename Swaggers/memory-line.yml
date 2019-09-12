@@ -59,15 +59,19 @@ paths:
       summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
       description: "Retorna os campeonatos de uma empresa"
       parameters:
-      - name: "id_memory_line"
-        in: "path"
-        required: true
-        type: "string"
+        - name: "id_memory_line"
+          in: "path"
+          required: true
+          type: "string"
+        - name: "user_id"
+          in: "header"
+          required: true
+          type: "string"
       responses:
         200:
           description: OK
           schema:
-            $ref: "#/definitions/InsertMachineData"
+            $ref: "#/definitions/MemoryLineSpecific"
     delete:
       tags:
         - "memory line"
@@ -81,39 +85,27 @@ paths:
       responses:
         200:
           description: OK
-          schema:
-            $ref: "#/definitions/InsertMachineData"
     put:
       tags:
         - "memory line"
       summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
       description: "Retorna os campeonatos de uma empresa"
       parameters:
-      - name: "id_memory_line"
-        in: "path"
-        required: true
-        type: "string"
+        - name: "id_memory_line"
+          in: "path"
+          required: true
+          type: "string"
+        - name: "name"
+          in: "body"
+          required: true
+          schema:
+            type: string
+            example: "mistborn"  
       responses:
         200:
           description: OK
           schema:
             $ref: "#/definitions/InsertMachineData"
-    post:
-      tags:
-        - "memory line"
-      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
-      description: "Retorna os campeonatos de uma empresa"
-      parameters:
-      - name: "id_memory_line"
-        in: "path"
-        required: true
-        type: "string"
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: "#/definitions/InsertMachineData"
-  
   /{id_memory_line}/{id_moment}:
     delete:
       tags:
@@ -192,40 +184,114 @@ paths:
             $ref: "#/definitions/InsertMachineData"
   
 definitions:
-  AllMemoryLine:
-    type: array
-    items:
-      type: object
-      properties:
-        idMemoryLine:
-          description: "Id da memory line como String"
-          type: string
-        nameMemoryLine:
-          description: "Id da memory line como String"
-          type: string
-        participants:
-          description: "Id da memory line como String"
-          type: string
-        quantityMoments:
+  TypeReaction:
+    type: object
+    properties:
+      typeReaction:
+        description: "Id da memory line como String"
+        type: string
+        format: enum
+        example: "enum(LOVE,SAD,...)"
+      quantity:
+        description: "Id da memory line como String"
+        type: integer
+        example: 10
+  Moment:
+    type: object
+    properties:
+      idMoment:
+        description: "Id da memory line como String"
+        type: string
+      typeContent:
+        description: "Id da memory line como String"
+        type: string
+        format: enum
+        example: "enum(IMAGE,TEXT,VIDEO,AUDIO)"
+      quantityReaction:
+        type: integer
+        example: 203
+      reactions:
+        description: ""
+        type: array
+        items:
+          type: object
+          $ref: "#/definitions/TypeReaction"
+  MemoryLineSpecific:
+    type: object
+    properties:
+      idMemoryLine:
+        description: "Id da memory line como String"
+        type: string
+      participants:
+        description: "Id da memory line como String"
+        type: array
+        items:
           description: ""
-          type: integer
-        urlProfileImage:
-          description: "Id da memory line como String"
-          type: string
-        lastTimeUpdate:
-          example: "1995-09-07T10:40:52Z"
-          format: date-time
-          type: string
-        creationDate:
-          example: "1995-09-07T10:40:52Z"
-          format: date-time
-          type: string
+          type: object
+          properties:
+            urlProfile:
+              description: ""
+              type: string
+      nameMemoryLine:
+        description: "Id da memory line como String"
+        type: string
+      moments:
+        description: "Id da memory line como String"
+        type: object
+        $ref: "#/definitions/Moment"
   MemoryLine:
     type: object
     properties:
-      nomeMemorieline:
-        description: "Data da Medição"
+      idMemoryLine:
+        description: "Id da memory line como String"
         type: string
+      nameMemoryLine:
+        description: "Id da memory line como String"
+        type: string
+      participants:
+        description: "Id da memory line como String"
+        type: array
+        items:
+          description: ""
+          type: object
+          properties:
+            urlProfile:
+              description: ""
+              type: string
+      quantityNotification:
+        description: ""
+        type: integer
+      lastImages:
+        description: "Id da memory line como String"
+        type: array
+        items:
+          description: ""
+          type: object
+          properties:
+            urlImage:
+              description: ""
+              type: string
+      lastTimeUpdate:
+        example: "1995-09-07T10:40:52Z"
+        format: date-time
+        type: string
+  AllMemoryLine:
+    type: object
+    properties:
+      private:
+        description: ""
+        type: array
+        items:
+          description: ""
+          type: object
+          $ref: "#/definitions/MemoryLine"
+      public:
+        description: ""
+        type: array
+        items:
+          description: ""
+          type: object
+          $ref: "#/definitions/MemoryLine"
   DateMetricMachineData:
     type: object
     properties:
