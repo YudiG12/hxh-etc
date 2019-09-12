@@ -31,10 +31,18 @@ paths:
         200:
           description: "Não houve nenhum erro no cadastro de memory line"
           schema:
+            type: object
             properties:
-                message:
-                  type: string
-                  description: "Cadastro feito com sucesso"
+              success:
+                type: boolean
+                example: true
+              content:
+                type: object
+                example: null
+              errorData:
+                type: object
+                example: null
+  
   /all:
     get:
       tags:
@@ -51,13 +59,22 @@ paths:
         200:
           description: OK
           schema:
-            $ref: "#/definitions/AllMemoryLine"
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              content:
+                $ref: "#/definitions/AllMemoryLine"
+              errorData:
+                type: object
+                example: null
+  
   /{id_memory_line}:
     get:
       tags:
         - "memory line"
-      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
-      description: "Retorna os campeonatos de uma empresa"
+      summary: "Retorna uma memory line específica"
       parameters:
         - name: "id_memory_line"
           in: "path"
@@ -71,26 +88,53 @@ paths:
         200:
           description: OK
           schema:
-            $ref: "#/definitions/MemoryLineSpecific"
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              content:
+                $ref: "#/definitions/MemoryLineSpecific"
+              errorData:
+                type: object
+                example: null
     delete:
       tags:
         - "memory line"
-      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
-      description: "Retorna os campeonatos de uma empresa"
+      summary: "Apaga uma memory line de um usuário"
       parameters:
-      - name: "id_memory_line"
-        in: "path"
-        required: true
-        type: "string"
+        - name: "user_id"
+          in: "header"
+          required: true
+          type: "string"
+        - name: "id_memory_line"
+          in: "path"
+          required: true
+          type: "string"
       responses:
         200:
           description: OK
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              content:
+                type: object
+                example: null
+              errorData:
+                type: object
+                example: null
     put:
       tags:
         - "memory line"
-      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
-      description: "Retorna os campeonatos de uma empresa"
+      summary: "Atualiza o nome de uma memory line"
       parameters:
+        - name: "user_id"
+          in: "header"
+          required: true
+          type: "string"
         - name: "id_memory_line"
           in: "path"
           required: true
@@ -105,63 +149,84 @@ paths:
         200:
           description: OK
           schema:
-            $ref: "#/definitions/InsertMachineData"
-  /{id_memory_line}/{id_moment}:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              content:
+                type: object
+                example: null
+              errorData:
+                type: object
+                example: null
+            
+  /{id_memory_line}/{id_moment}: 
     delete:
       tags:
         - "moment in memory line"
-      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
-      description: "Retorna os campeonatos de uma empresa"
+      summary: "Apagar um moment de uma memory line"
       parameters:
-      - name: "id_memory_line"
-        in: "path"
-        required: true
-        type: "string"
-      - name: "id_moment"
-        in: "path"
-        required: true
-        type: "string"
+        - name: "user_id"
+          in: "header"
+          required: true
+          type: "string"
+        - name: "id_memory_line"
+          in: "path"
+          required: true
+          type: "string"
+        - name: "id_moment"
+          in: "path"
+          required: true
+          type: "string"
       responses:
         200:
           description: OK
           schema:
-            $ref: "#/definitions/InsertMachineData"
-    put:
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              content:
+                type: object
+                example: null
+              errorData:
+                type: object
+                example: null
+    post:
       tags:
         - "moment in memory line"
-      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
-      description: "Retorna os campeonatos de uma empresa"
+      summary: "Insere o moment de uma memory line"
       parameters:
-      - name: "id_memory_line"
-        in: "path"
-        required: true
-        type: "string"
-      - name: "id_moment"
-        in: "path"
-        required: true
-        type: "string"
+        - name: "user_id"
+          in: "header"
+          required: true
+          type: "string"
+        - name: "id_memory_line"
+          in: "path"
+          required: true
+          type: "string"
+        - name: "id_moment"
+          in: "path"
+          required: true
+          type: "string"
       responses:
         200:
           description: OK
           schema:
-            $ref: "#/definitions/InsertMachineData"
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              content:
+                type: object
+                example: null
+              errorData:
+                type: object
+                example: null
             
-  /{id_memory_line}/share:
-    get:
-      tags:
-        - "share memory line"
-      summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
-      description: "Retorna os campeonatos de uma empresa"
-      parameters:
-      - name: "id_memory_line"
-        in: "path"
-        required: true
-        type: "string"
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: "#/definitions/InsertMachineData"
   /{id_memory_line}/invite/{id_user}:
     get:
       tags:
@@ -169,109 +234,139 @@ paths:
       summary: "Retorna os campeonatos de uma empresa ! Necessário Cookie"
       description: "Retorna os campeonatos de uma empresa"
       parameters:
-      - name: "id_memory_line"
-        in: "path"
-        required: true
-        type: "string"
-      - name: "id_user"
-        in: "path"
-        required: true
-        type: "string"
+        - name: "id_memory_line"
+          in: "path"
+          required: true
+          type: "string"
+        - name: "id_user"
+          in: "path"
+          required: true
+          type: "string"
+        - name: "username"
+          in: "body"
+          required: true
+          schema:
+            type: string
+            example: "mistborn"
       responses:
         200:
           description: OK
           schema:
-            $ref: "#/definitions/InsertMachineData"
+            type: object
+            properties:
+              success:
+                type: boolean
+                example: true
+              content:
+                type: object
+                example: null
+              errorData:
+                type: object
+                example: null
   
 definitions:
+  ErrorData:
+    type: object
+    properties:
+      typeError:
+        description: "Tipo do Erro"
+        type: string
+        example: "INVALID_DATA"
+      message:
+        description: "Mensagem do erro para poder mostrar no front"
+        type: string
+        example: "Falhou em tal coisa"
   TypeReaction:
     type: object
     properties:
       typeReaction:
-        description: "Id da memory line como String"
+        description: "Tipo da reação"
         type: string
         format: enum
-        example: "enum(LOVE,SAD,...)"
+        example: "enum(AMEI, SAUDADES, NOSTALGICO, TRISTE, HAHA, NEM_LEMBRO)"
       quantity:
-        description: "Id da memory line como String"
+        description: "Quantidade que essa reação aparece"
         type: integer
         example: 10
   Moment:
     type: object
     properties:
       idMoment:
-        description: "Id da memory line como String"
+        description: "id do moment"
         type: string
-      typeContent:
-        description: "Id da memory line como String"
+      typeMoment:
+        description: "Tipo do Moment"
         type: string
         format: enum
-        example: "enum(IMAGE,TEXT,VIDEO,AUDIO)"
+        example: "enum(IMAGEM,TEXTO,VIDEO,AUDIO)"
+      urlMoment:
+        description: "url do bucket para acessar o momento"
+        type: string
       quantityReaction:
+        description: "Quantidade de reações no total"
         type: integer
         example: 203
       reactions:
-        description: ""
+        description: "Todas as reações separadas pelos seus tipos"
         type: array
         items:
-          type: object
           $ref: "#/definitions/TypeReaction"
   MemoryLineSpecific:
     type: object
     properties:
       idMemoryLine:
-        description: "Id da memory line como String"
+        description: "id da memory line"
         type: string
       participants:
-        description: "Id da memory line como String"
+        description: "usuários participantes da memory line"
         type: array
         items:
-          description: ""
           type: object
+          description: "Imagens dos usuários"
           properties:
             urlProfile:
-              description: ""
+              description: "url do bucket para acessar a imagem do usuário"
               type: string
       nameMemoryLine:
-        description: "Id da memory line como String"
+        description: "Nome da memory line"
         type: string
       moments:
-        description: "Id da memory line como String"
-        type: object
+        description: "Moments da memory line"
         $ref: "#/definitions/Moment"
   MemoryLine:
     type: object
     properties:
       idMemoryLine:
-        description: "Id da memory line como String"
+        description: "id da Memory Line"
         type: string
       nameMemoryLine:
-        description: "Id da memory line como String"
+        description: "nome da Memory Line"
         type: string
       participants:
-        description: "Id da memory line como String"
+        description: "usuários participantes da memory line"
         type: array
         items:
-          description: ""
           type: object
+          description: "Imagens dos usuários"
           properties:
             urlProfile:
-              description: ""
+              description: "url do bucket para acessar a imagem do usuário"
               type: string
       quantityNotification:
         description: ""
         type: integer
       lastImages:
-        description: "Id da memory line como String"
+        description: "Moments(do tipo image) recentemente adicionados"
         type: array
         items:
-          description: ""
+          description: "Moments(do tipo image)"
           type: object
           properties:
             urlImage:
-              description: ""
+              description: "url do bucket para acessar o momento"
               type: string
       lastTimeUpdate:
+        description: "ultima vez que a memory line foi co"
         example: "1995-09-07T10:40:52Z"
         format: date-time
         type: string
@@ -279,40 +374,14 @@ definitions:
     type: object
     properties:
       private:
-        description: ""
+        description: "Memory Line privadas"
         type: array
         items:
-          description: ""
           type: object
           $ref: "#/definitions/MemoryLine"
       public:
-        description: ""
+        description: "Memory Line públicas"
         type: array
         items:
-          description: ""
           type: object
           $ref: "#/definitions/MemoryLine"
-  DateMetricMachineData:
-    type: object
-    properties:
-      date:
-        description: "Data da Medição"
-        type: string
-  InsertMachineData:
-    type: object
-    properties:
-      idMachine:
-        description: "Placa Mãe"
-        type: string
-      motherBoard:
-        description: "Placa Mãe"
-        type: string
-      os:
-        description: "Sistema Operacional"
-        type: string
-      manufacturer:
-        description: "Fabricante"
-        type: string
-      model:
-        description: "Modelo"
-        type: string
