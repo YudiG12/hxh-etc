@@ -1,0 +1,1165 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Essa é a documentação da API da Memory Line para uso do grupo da faculdade",
+    "version": "1.0.0",
+    "title": "TecHxHunt Moment"
+  },
+  "host": "Unknown:5000",
+  "tags": [
+    {
+      "name": "moment in memory line"
+    },
+    {
+      "name": "reaction"
+    },
+    {
+      "name": "comment"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/{id_memory_line}/{id_moment}": {
+      "delete": {
+        "tags": [
+          "moment in memory line"
+        ],
+        "summary": "Apagar um moment de uma memory line",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id_memory_line}": {
+      "post": {
+        "tags": [
+          "moment in memory line"
+        ],
+        "summary": "Insere o moment de uma memory line",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "moment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MomentInsert"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id_memory_line}/{id_moment}/comment": {
+      "post": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Inserir comentário no moment",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "text-comment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "mistborn é incrivel"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id_memory_line}/{id_moment}/comment/{id_comment}": {
+      "post": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Responder comentário",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_comment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "text-comment",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "mistborn é incrivel 2"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Apagar um comentário",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_comment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Editar um comentário",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_comment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "text-comment-updated",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "mistborn é incrivel, mas stormlight archive"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id_memory_line}/{id_moment}/comment/{id_comment}/reaction": {
+      "post": {
+        "tags": [
+          "reaction"
+        ],
+        "summary": "Reagir a um comentário",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_comment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "reaction",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/typeReaction"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "reaction"
+        ],
+        "summary": "Atualizar uma reação no comentário",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_comment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "reaction",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/typeReaction"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "reaction"
+        ],
+        "summary": "Apagar uma reação no comentário",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_comment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id_memory_line}/{id_moment}/reactions": {
+      "get": {
+        "tags": [
+          "reaction"
+        ],
+        "summary": "Reações de um moment",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_comment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/TypeReactionUsers"
+                  }
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id_memory_line}/{id_moment}/comment/{id_comment}/reactions": {
+      "get": {
+        "tags": [
+          "reaction"
+        ],
+        "summary": "Reações de um comentário",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_comment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/TypeReactionUsers"
+                  }
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id_memory_line}/{id_moment}/reaction": {
+      "post": {
+        "tags": [
+          "reaction"
+        ],
+        "summary": "Reagir a um moment",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "reaction",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/typeReaction"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "reaction"
+        ],
+        "summary": "Atualizar reação de um moment",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "reaction",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/typeReaction"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "reaction"
+        ],
+        "summary": "Apagar reação de um moment",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id_memory_line}/{id_moment}/comments": {
+      "get": {
+        "tags": [
+          "comment"
+        ],
+        "summary": "Comentários de um momento",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_moment",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Comments"
+                  }
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Comments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Comment"
+      }
+    },
+    "Comment": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "creationDate": {
+          "example": "1995-09-07T10:40:52Z",
+          "format": "date-time",
+          "type": "string"
+        },
+        "nameUser": {
+          "type": "string",
+          "example": "Elend Venture"
+        },
+        "urlProfile": {
+          "description": "Url profile do bucket",
+          "type": "string"
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "creationDate": {
+                "example": "1995-09-07T10:40:52Z",
+                "format": "date-time",
+                "type": "string"
+              },
+              "nameUser": {
+                "type": "string",
+                "example": "Elend Venture"
+              },
+              "urlProfile": {
+                "description": "Url profile do bucket",
+                "type": "string"
+              },
+              "answers": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "reactions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TypeReaction"
+          }
+        }
+      }
+    },
+    "ErrorData": {
+      "type": "object",
+      "properties": {
+        "typeError": {
+          "description": "Tipo do Erro",
+          "type": "string",
+          "example": "INVALID_DATA"
+        },
+        "message": {
+          "description": "Mensagem do erro para poder mostrar no front",
+          "type": "string",
+          "example": "Falhou em tal coisa"
+        }
+      }
+    },
+    "MomentInsert": {
+      "type": "object",
+      "properties": {
+        "typeMoment": {
+          "description": "Tipo do Moment",
+          "type": "string",
+          "format": "enum",
+          "example": "enum(IMAGEM,TEXTO,VIDEO,AUDIO)"
+        },
+        "urlMoment": {
+          "description": "url do bucket para acessar o momento",
+          "type": "string"
+        }
+      }
+    },
+    "typeReaction": {
+      "description": "Tipo da reação",
+      "type": "string",
+      "format": "enum",
+      "example": "enum(AMEI, SAUDADES, NOSTALGICO, TRISTE, HAHA, NEM_LEMBRO)"
+    },
+    "TypeReaction": {
+      "type": "object",
+      "properties": {
+        "typeReaction": {
+          "$ref": "#/definitions/typeReaction"
+        },
+        "quantity": {
+          "description": "Quantidade que essa reação aparece",
+          "type": "integer",
+          "example": 10
+        }
+      }
+    },
+    "TypeReactionUsers": {
+      "type": "object",
+      "properties": {
+        "typeReaction": {
+          "$ref": "#/definitions/typeReaction"
+        },
+        "uers": {
+          "description": "Usuários",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/typeReaction"
+          }
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "urlProfile": {
+          "description": "Url profile do bucket do usuário",
+          "type": "string"
+        },
+        "name": {
+          "description": "Nome usuário",
+          "type": "string"
+        }
+      }
+    },
+    "Moment": {
+      "type": "object",
+      "properties": {
+        "idMoment": {
+          "description": "id do moment",
+          "type": "string"
+        },
+        "typeMoment": {
+          "description": "Tipo do Moment",
+          "type": "string",
+          "format": "enum",
+          "example": "enum(IMAGEM,TEXTO,VIDEO,AUDIO)"
+        },
+        "urlMoment": {
+          "description": "url do bucket para acessar o momento",
+          "type": "string"
+        },
+        "quantityReaction": {
+          "description": "Quantidade de reações no total",
+          "type": "integer",
+          "example": 203
+        },
+        "reactions": {
+          "description": "Todas as reações separadas pelos seus tipos",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TypeReaction"
+          }
+        },
+        "cretionDate": {
+          "example": "1995-09-07T10:40:52Z",
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "MemoryLineSpecific": {
+      "type": "object",
+      "properties": {
+        "idMemoryLine": {
+          "description": "id da memory line",
+          "type": "string"
+        },
+        "participants": {
+          "description": "usuários participantes da memory line",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Imagens dos usuários",
+            "properties": {
+              "urlProfile": {
+                "description": "url do bucket para acessar a imagem do usuário",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "nameMemoryLine": {
+          "description": "Nome da memory line",
+          "type": "string"
+        },
+        "moments": {
+          "description": "Moments da memory line",
+          "$ref": "#/definitions/Moment"
+        }
+      }
+    },
+    "MemoryLine": {
+      "type": "object",
+      "properties": {
+        "idMemoryLine": {
+          "description": "id da Memory Line",
+          "type": "string"
+        },
+        "nameMemoryLine": {
+          "description": "nome da Memory Line",
+          "type": "string"
+        },
+        "participants": {
+          "description": "usuários participantes da memory line",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Imagens dos usuários",
+            "properties": {
+              "urlProfile": {
+                "description": "url do bucket para acessar a imagem do usuário",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "quantityNotification": {
+          "description": "",
+          "type": "integer"
+        },
+        "lastImages": {
+          "description": "Moments(do tipo image) recentemente adicionados",
+          "type": "array",
+          "items": {
+            "description": "Moments(do tipo image)",
+            "type": "object",
+            "properties": {
+              "urlImage": {
+                "description": "url do bucket para acessar o momento",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "lastTimeUpdate": {
+          "description": "ultima vez que a memory line foi atualizada",
+          "example": "1995-09-07T10:40:52Z",
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "AllMemoryLine": {
+      "type": "object",
+      "properties": {
+        "private": {
+          "description": "Memory Line privadas",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/MemoryLine"
+          }
+        },
+        "public": {
+          "description": "Memory Line públicas",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/MemoryLine"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,469 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Essa é a documentação da API da Memory Line para uso do grupo da faculdade",
+    "version": "1.0.0",
+    "title": "TecHxHunt Memory Line"
+  },
+  "host": "Unknown:5000",
+  "tags": [
+    {
+      "name": "memory line"
+    },
+    {
+      "name": "share memory line"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "tags": [
+          "memory line"
+        ],
+        "summary": "Insere uma nova memory line",
+        "description": "O usuário não precisa mandar nenhuma informação, automaticamente a memory line é criada com o nome untitled e as outras informações tiradas do usuário que a enviou",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Não houve nenhum erro no cadastro de memory line",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/all": {
+      "get": {
+        "tags": [
+          "memory line"
+        ],
+        "summary": "Retorna as memory line do usuário (privadas ou públicas)",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "$ref": "#/definitions/AllMemoryLine"
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id_memory_line}": {
+      "get": {
+        "tags": [
+          "memory line"
+        ],
+        "summary": "Retorna uma memory line específica",
+        "parameters": [
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "$ref": "#/definitions/MemoryLineSpecific"
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "memory line"
+        ],
+        "summary": "Apaga uma memory line de um usuário",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "memory line"
+        ],
+        "summary": "Atualiza o nome de uma memory line",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "mistborn"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id_memory_line}/invite/{id_user}": {
+      "get": {
+        "tags": [
+          "share memory line"
+        ],
+        "summary": "Retorna os campeonatos de uma empresa ! Necessário Cookie",
+        "description": "Retorna os campeonatos de uma empresa",
+        "parameters": [
+          {
+            "name": "id_memory_line",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id_user",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "username",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "mistborn"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "content": {
+                  "type": "object",
+                  "example": null
+                },
+                "errorData": {
+                  "type": "object",
+                  "example": null
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ErrorData": {
+      "type": "object",
+      "properties": {
+        "typeError": {
+          "description": "Tipo do Erro",
+          "type": "string",
+          "example": "INVALID_DATA"
+        },
+        "message": {
+          "description": "Mensagem do erro para poder mostrar no front",
+          "type": "string",
+          "example": "Falhou em tal coisa"
+        }
+      }
+    },
+    "TypeReaction": {
+      "type": "object",
+      "properties": {
+        "typeReaction": {
+          "description": "Tipo da reação",
+          "type": "string",
+          "format": "enum",
+          "example": "enum(AMEI, SAUDADES, NOSTALGICO, TRISTE, HAHA, NEM_LEMBRO)"
+        },
+        "quantity": {
+          "description": "Quantidade que essa reação aparece",
+          "type": "integer",
+          "example": 10
+        }
+      }
+    },
+    "Moment": {
+      "type": "object",
+      "properties": {
+        "idMoment": {
+          "description": "id do moment",
+          "type": "string"
+        },
+        "typeMoment": {
+          "description": "Tipo do Moment",
+          "type": "string",
+          "format": "enum",
+          "example": "enum(IMAGEM,TEXTO,VIDEO,AUDIO)"
+        },
+        "urlMoment": {
+          "description": "url do bucket para acessar o momento",
+          "type": "string"
+        },
+        "quantityReaction": {
+          "description": "Quantidade de reações no total",
+          "type": "integer",
+          "example": 203
+        },
+        "reactions": {
+          "description": "Todas as reações separadas pelos seus tipos",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TypeReaction"
+          }
+        },
+        "cretionDate": {
+          "example": "1995-09-07T10:40:52Z",
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "MemoryLineSpecific": {
+      "type": "object",
+      "properties": {
+        "idMemoryLine": {
+          "description": "id da memory line",
+          "type": "string"
+        },
+        "participants": {
+          "description": "usuários participantes da memory line",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Imagens dos usuários",
+            "properties": {
+              "urlProfile": {
+                "description": "url do bucket para acessar a imagem do usuário",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "nameMemoryLine": {
+          "description": "Nome da memory line",
+          "type": "string"
+        },
+        "moments": {
+          "description": "Moments da memory line",
+          "$ref": "#/definitions/Moment"
+        }
+      }
+    },
+    "MemoryLine": {
+      "type": "object",
+      "properties": {
+        "idMemoryLine": {
+          "description": "id da Memory Line",
+          "type": "string"
+        },
+        "nameMemoryLine": {
+          "description": "nome da Memory Line",
+          "type": "string"
+        },
+        "participants": {
+          "description": "usuários participantes da memory line",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Imagens dos usuários",
+            "properties": {
+              "urlProfile": {
+                "description": "url do bucket para acessar a imagem do usuário",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "quantityNotification": {
+          "description": "",
+          "type": "integer"
+        },
+        "lastImages": {
+          "description": "Moments(do tipo image) recentemente adicionados",
+          "type": "array",
+          "items": {
+            "description": "Moments(do tipo image)",
+            "type": "object",
+            "properties": {
+              "urlImage": {
+                "description": "url do bucket para acessar o momento",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "lastTimeUpdate": {
+          "description": "ultima vez que a memory line foi atualizada",
+          "example": "1995-09-07T10:40:52Z",
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "AllMemoryLine": {
+      "type": "object",
+      "properties": {
+        "private": {
+          "description": "Memory Line privadas",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/MemoryLine"
+          }
+        },
+        "public": {
+          "description": "Memory Line públicas",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/MemoryLine"
+          }
+        }
+      }
+    }
+  }
+}
