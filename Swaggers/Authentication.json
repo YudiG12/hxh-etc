@@ -1,0 +1,215 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "first API Gateway API.",
+    "version": "2019-09-18T23:28:26Z",
+    "title": "Auth",
+    "contact": {
+      "name": "Rodolfo Gregório",
+      "email": "rodolfogalima@gmail.com"
+    }
+  },
+  "host": "1kamokmd96.execute-api.us-east-1.amazonaws.com",
+  "tags": [
+    {
+      "name": "Authentication"
+    }
+  ],
+  "basePath": "/beta",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/confirmsignup": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ConfirmSignUp",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ConfirmSignUp"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/DefaultSuccess"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signin": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Signin",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Signin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/SigninSuccess"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signup": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Signup",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Signup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/definitions/DefaultSuccess"
+            },
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "DefaultSuccess": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "string"
+        },
+        "data": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    },
+    "Signup": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "birth_date": {
+          "type": "string"
+        }
+      }
+    },
+    "Signin": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "ConfirmSignUp": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        }
+      }
+    },
+    "SigninSuccess": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "string"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "access_token": {
+              "type": "string"
+            },
+            "user_id": {
+              "type": "string"
+            }
+          }
+        },
+        "error": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
